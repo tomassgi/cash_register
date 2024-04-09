@@ -1,1 +1,1 @@
-# cash_register
+# Kases aparāts
