@@ -28,4 +28,54 @@
 # Saraksti - https://www.w3schools.com/python/python_lists.asp
 # Vārdnīcas - https://www.w3schools.com/python/python_dictionaries.asp
 # Klonēt repozitoriju - hhttps://code.visualstudio.com/docs/sourcecontrol/intro-to-git
-#
+#1 pievienot preci
+#2 dzēst preci
+#3 atcelt ievadu
+#4 piemērot atlaidi
+#5 samaksāt
+#6 izdrukāt čeku uz ekrāna
+import json
+items = []
+
+with open('cash_register.json', 'r') as openfile:
+    # tiek lasīts no json file
+    movies = json.load(openfile)
+while True:# Veidojas loop kas bezgaligi iet
+        print("1. Pievienot preci")
+        print("2. Dzēst preci")
+        print("3. Atcelt ievadu")
+        print("4. Piemērot atlaidi")
+        print("5. samaksāt")
+        print("6. Izdrukāt čeku uz ekrāna")
+
+        choice = input("Enter your choice:")
+
+        if choice == "1":#Kad izvēlas 1, tiek pievienota prece
+            item_nosaukums = str(input("Ievadiet preces nosaukumu"))
+            item_cena= float(input("Ievadiet preces cenu"))
+            x = {
+                "nosaukums": item_nosaukums,
+                "cena": item_cena,
+            }
+            items.append(x)
+        elif choice == "2":#Kad izvēlas 2, izvēlētā prece tiek dzēsta
+            item_dzest = int(input("Ievadiet kartas nummuru precei ko jūs vēlaties dzēst"))
+            items.pop(item_dzest)
+
+        elif choice =="3":#Kad izvēlas 3, ievads tiek atcelts
+            del item_nosaukums,
+            del item_cena
+
+        elif choice == "4":#Kad izvēlas 4, tiek piemērota atlaide
+            item_atlaide = str(input("Ievadiet atlaides nosaukumu"))
+            item_atlaide_procentos = int(input("Ievadiet atlaidi procentos(%)"))
+
+        elif choice == "5":#Kad izvēlas 5, samaksā un uz ekrana tiek paradits atlikums 
+            item_samaksat = float(input("Ievadiet summu ar ko jūs maksāsiet"))
+            print(item_samaksat - item_cena)
+        elif choice == "6": #Kad izvēlas 6, izdrukā čeku uz ekrāna
+            print(item_nosaukums, item_cena)
+        else:
+            print("Nepareiza izvēle, meģiniet vēlreiz")
+
+        with open("cash_register.json") as cash_register_file:#saglabā čekus json failā
